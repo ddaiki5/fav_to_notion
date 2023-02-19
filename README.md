@@ -4,7 +4,7 @@ Automatic saving of twitter favs to notion database
 The following environment variables must be set.
 
 - twitter api
-    - TARGET
+    - TARGET (user id)
     - CONSUMER_KEY
     - CONSUMER_SECRET
     - ACCESS_TOKEN
