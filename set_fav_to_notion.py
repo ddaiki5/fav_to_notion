@@ -1,9 +1,6 @@
 from notion_client import Client
 import os
 
-
-
-
 def setting_client():
     token = os.environ.get("NOTION_TOKEN")
 
@@ -49,13 +46,12 @@ def add_child_page(client, content, urls):
 
     # 子ページを作成するAPIを呼び出す
     response = client.pages.create(parent={"database_id": database_id}, properties=properties, children=children)
-    print(urls)
     for url in urls:
         client.blocks.children.append(block_id=response["id"], children=[{"object": "block", "type": "image", "image": {"type": "external", "external": {"url": url}}}])
     
 def add_pages(client, fav_list):
     for content, urls in fav_list:
-        s = "\n".join(content)
+        s = "\n".join([content["text"], content["id"], content["created_at"], content["tweet_url"]])
         add_child_page(client, s, urls)
 
 
